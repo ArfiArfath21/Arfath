@@ -6,6 +6,7 @@ import profile from '@/content/profile.json'
 import { Card, CardContent } from '@/components/ui/card'
 import { FadeIn } from '@/components/motion/fade-in'
 import { ProjectTile } from '@/components/project-tile'
+import { QuickLinks } from '@/components/quick-links'
 
 export default function HomePage() {
   const featured = projects.slice(0, 3)
@@ -57,6 +58,13 @@ export default function HomePage() {
               <ProjectTile key={p.slug} project={p as any} />
             ))}
           </div>
+        </section>
+      </FadeIn>
+
+      <FadeIn delay={0.1}>
+        <section>
+          <h2 className="mb-4 font-heading text-xl text-muted">Quick Links</h2>
+          <QuickLinks />
         </section>
       </FadeIn>
     </div>

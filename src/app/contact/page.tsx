@@ -26,7 +26,7 @@ export default function ContactPage() {
           <span className="shrink-0 rounded-2xl bg-primary/20 p-3 text-primary"><Calendar /></span>
           <div className="min-w-0">
             <div className="text-sm text-muted">Calendly</div>
-            <div className="truncate text-foreground">Book a 30‑min intro ↗</div>
+            <div className="truncate text-foreground">Book a 30‑min intro</div>
           </div>
         </a>
         <a
