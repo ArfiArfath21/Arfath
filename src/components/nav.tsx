@@ -20,7 +20,7 @@ export function Nav() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-md">
-      <div className="container-12 flex h-16 items-center justify-between">
+      <div className="container-12 flex h-14 md:h-16 items-center justify-between">
         <Link href="/" className="font-heading tracking-wide text-lg">
           ARFATH
         </Link>
@@ -76,13 +76,17 @@ export function Nav() {
           </Button>
         </div>
       </div>
-      <div id="mobile-menu" data-open="false" className="md:hidden border-t border-border bg-background/95 origin-top transition-all duration-200 scale-y-0">
-        <div className="container-12 flex flex-col py-2">
+      <div
+        id="mobile-menu"
+        data-open="false"
+        className="md:hidden fixed inset-x-0 top-14 z-50 border-t border-border bg-background/95 backdrop-blur-md shadow-soft origin-top overflow-hidden max-h-[28vh] -translate-y-2 scale-y-0 opacity-0 pointer-events-none transition-all duration-200 data-[open=true]:translate-y-0 data-[open=true]:scale-y-100 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto data-[open=true]:overflow-y-auto"
+      >
+        <div className="container-12 flex flex-col py-1">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={`rounded-xl px-3 py-2 text-sm hover:bg-white/5 ${
+              className={`rounded-xl px-3 py-1.5 text-sm hover:bg-white/5 ${
                 pathname === l.href ? 'text-primary' : 'text-foreground'
               }`}
               onClick={() => {
@@ -91,6 +95,10 @@ export function Nav() {
                 if (menu && overlay) {
                   menu.dataset.open = 'false'
                   overlay.classList.add('hidden')
+                  const toggle = document.querySelector(
+                    'button[aria-controls="mobile-menu"]'
+                  ) as HTMLButtonElement | null
+                  if (toggle) toggle.setAttribute('aria-expanded', 'false')
                 }
               }}
             >
@@ -101,13 +109,17 @@ export function Nav() {
             href="https://theblogorithm.com"
             target="_blank"
             rel="noopener"
-            className="rounded-xl px-3 py-2 text-sm hover:bg-white/5 text-foreground"
+            className="rounded-xl px-3 py-1.5 text-sm hover:bg-white/5 text-foreground"
             onClick={() => {
               const menu = document.getElementById('mobile-menu')
               const overlay = document.getElementById('menu-overlay')
               if (menu && overlay) {
                 menu.dataset.open = 'false'
                 overlay.classList.add('hidden')
+                const toggle = document.querySelector(
+                  'button[aria-controls="mobile-menu"]'
+                ) as HTMLButtonElement | null
+                if (toggle) toggle.setAttribute('aria-expanded', 'false')
               }
             }}
           >
@@ -123,6 +135,10 @@ export function Nav() {
           if (menu) menu.dataset.open = 'false'
           const overlay = document.getElementById('menu-overlay')
           if (overlay) overlay.classList.add('hidden')
+          const toggle = document.querySelector(
+            'button[aria-controls="mobile-menu"]'
+          ) as HTMLButtonElement | null
+          if (toggle) toggle.setAttribute('aria-expanded', 'false')
         }}
       />
     </header>

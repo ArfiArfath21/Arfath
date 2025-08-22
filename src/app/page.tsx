@@ -37,7 +37,7 @@ export default function HomePage() {
             ))}
           </ul>
           </div>
-          <div className="col-span-5">
+          <div className="col-span-5 hidden lg:block">
             <div className="glass h-64 w-full rounded-2xl bg-[radial-gradient(120px_120px_at_30%_30%,rgba(79,139,255,0.25),transparent),radial-gradient(120px_120px_at_70%_60%,rgba(41,211,145,0.25),transparent),radial-gradient(120px_120px_at_60%_30%,rgba(155,107,255,0.25),transparent)]" />
           </div>
         </section>
