@@ -1,6 +1,7 @@
 "use client"
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import type { Route } from 'next'
 import { Button } from '@/components/ui/button'
 import { useTheme } from 'next-themes'
 import { Moon, Sun } from 'lucide-react'
@@ -11,7 +12,7 @@ const links = [
   { href: '/work', label: 'Work' },
   { href: '/awards', label: 'Awards' },
   { href: '/contact', label: 'Contact' },
-]
+] as const satisfies ReadonlyArray<{ href: Route; label: string }>
 
 export function Nav() {
   const pathname = usePathname()

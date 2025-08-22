@@ -1,4 +1,4 @@
-import { ImageResponse } from 'next/server'
+import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 export const size = { width: 1200, height: 630 }
@@ -37,4 +37,3 @@ export default function OpengraphImage() {
     { ...size }
   )
 }
-
