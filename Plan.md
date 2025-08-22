@@ -45,7 +45,7 @@ This gives your developer everything they need for a clean, modern, “sexy-as-h
 
 ## 3) Tech Stack (suggested)
 
-Next.js 14 (App Router) + TypeScript, Tailwind CSS, shadcn/ui, Framer Motion, **next-seo**, **next/image**.
+Next.js (App Router) + TypeScript, Tailwind CSS, shadcn/ui, Framer Motion, **next-seo**, **next/image**.
 Hosting: Vercel (edge). Analytics: **Plausible**. Forms: Resend/Ethereal or GetForm.
 
 ---

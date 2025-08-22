@@ -1,0 +1,16 @@
+{
+  "name": "Arfath Ahmed Syed",
+  "tagline": "I build AI that ships.",
+  "location": "Hyderabad, India",
+  "email": "arfiarfath0305@gmail.com",
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/arfath21/",
+    "github": "https://github.com/ArfiArfath21"
+  },
+  "stats": [
+    { "label": "Years shipping AI", "value": 3 },
+    { "label": "Team size led", "value": 15 },
+    { "label": "Latency cut", "value": "70%" }
+  ]
+}
+

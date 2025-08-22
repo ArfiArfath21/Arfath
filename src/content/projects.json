@@ -1,0 +1,40 @@
+[
+  {
+    "slug": "insights-iq",
+    "title": "Insights IQ",
+    "role": "Product Lead & Architect",
+    "year": "2024–25",
+    "stack": ["LangGraph", "FAISS", "FastAPI", "K8s", "gRPC", "Ray/Celery"],
+    "summary": "Enterprise GenAI analytics with agentic orchestration, dynamic pipelines, and secure multi-tenant MLOps. Launched on AWS Marketplace.",
+    "impact": [
+      "Cut time-to-insight for analysts",
+      "Hardened reliability with observability & rollback",
+      "Enabled secure enterprise adoption"
+    ],
+    "links": { "caseStudy": "/work/insights-iq", "demo": "", "repo": "" },
+    "cover": "/images/insights-iq-cover.png"
+  },
+  {
+    "slug": "aiba-genai-recommender",
+    "title": "AIBA GenAI Recommender",
+    "role": "Lead Developer (Data)",
+    "year": "2024",
+    "stack": ["Vector search", "Hybrid search", "RAG", "Caching", "Async"],
+    "summary": "Modernized legacy ML recsys into self-service GenAI engine for exploration and zero-shot personalization.",
+    "impact": ["70% latency reduction", "20% earlier-stage cut", "Improved engagement & accuracy"],
+    "links": { "caseStudy": "/work/aiba", "repo": "" },
+    "cover": "/images/aiba-cover.png"
+  },
+  {
+    "slug": "slingshot-copilot",
+    "title": "Slingshot — AI Copilot for DS",
+    "role": "Tech Lead",
+    "year": "2023–24",
+    "stack": ["Prompt ops", "Scaffolding", "Code review"],
+    "summary": "Accelerated DS workflows across SDLC (prompt ops, scaffolding, code review suggestions).",
+    "impact": ["Faster iteration", "Higher quality"],
+    "links": { "caseStudy": "/work/slingshot" },
+    "cover": "/images/slingshot-cover.png"
+  }
+]
+

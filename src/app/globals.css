@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* HSL for easier theming */
+  --background: 240 23% 5%; /* #0B0B0F */
+  --surface: 240 19% 8%; /* #12121A */
+  --foreground: 226 28% 92%; /* #E8EAF2 */
+  --muted: 220 9% 63%; /* #9AA0AE */
+  /* Use alpha in HSL tuple so hsl(var(--border)) supports transparency in dark */
+  --border: 0 0% 100% / 0.06; /* ~white/6 for subtle dark borders */
+  --primary: 220 100% 66%; /* #4F8BFF */
+  --primary-foreground: 228 28% 10%;
+  --accent-jade: 156 64% 50%; /* #29D391 */
+  --accent-iris: 260 100% 71%; /* #9B6BFF */
+}
+
+.light {
+  --background: 228 33% 98%;
+  --surface: 223 25% 95%;
+  --foreground: 228 12% 10%;
+  --muted: 225 8% 46%;
+  --border: 225 14% 82%;
+  --primary: 220 100% 54%;
+  --primary-foreground: 0 0% 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-foreground font-body antialiased selection:bg-primary/20 selection:text-foreground;
+}
+
+.glass {
+  @apply bg-surface/60 backdrop-blur-md shadow-glass border border-border rounded-2xl;
+}
+
+.container-12 {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+/* Focus styles */
+:where(a, button, input, textarea, select) {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-md;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
