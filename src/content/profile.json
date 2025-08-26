@@ -9,8 +9,7 @@
   },
   "stats": [
     { "label": "Years shipping AI", "value": 3 },
-    { "label": "Team size led", "value": 15 },
-    { "label": "Latency cut", "value": "70%" }
+    { "label": "Team size led", "value": 15 }
   ]
 }
 
