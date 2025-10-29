@@ -10,7 +10,8 @@ export default function Page() {
       script.defer = true;
       script.onload = async () => {
         await customElements.whenDefined('openai-chatkit');
-        const el = document.getElementById('investment-chat') as any;
+        // Grab the chat element
+        const el = document.getElementById('investment-chat');
         try {
           const res = await fetch('/api/chatkit/session', { method: 'POST' });
           const { client_secret } = await res.json();
@@ -18,7 +19,8 @@ export default function Page() {
             console.error('Missing client secret or chat element');
             return;
           }
-          el.setOptions({
+          // Cast el to any so we can call setOptions
+          (el as any).setOptions({
             api: {
               getClientSecret: () => client_secret,
             },
@@ -37,6 +39,7 @@ export default function Page() {
 
   return (
     <div className="flex justify-center p-4">
+      {/* ChatKit element; width and height set for layout */}
       <openai-chatkit id="investment-chat" style={{ width: '100%', height: '600px' }}></openai-chatkit>
     </div>
   );
