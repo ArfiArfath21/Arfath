@@ -10,12 +10,12 @@ export default function Page() {
       script.defer = true;
       script.onload = async () => {
         await customElements.whenDefined('openai-chatkit');
-        const el = document.getElementById('investment-chat');
+        const el = document.getElementById('investment-chat') as any;
         try {
           const res = await fetch('/api/chatkit/session', { method: 'POST' });
           const { client_secret } = await res.json();
-          if (!client_secret) {
-            console.error('No client secret returned');
+          if (!client_secret || !el) {
+            console.error('Missing client secret or chat element');
             return;
           }
           el.setOptions({
