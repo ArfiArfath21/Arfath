@@ -11,6 +11,7 @@ const links = [
   { href: '/about', label: 'About' },
   { href: '/work', label: 'Work' },
   { href: '/awards', label: 'Awards' },
+  { href: '/netflix-plan', label: 'Netflix Plan' },
   { href: '/contact', label: 'Contact' },
 ] as const satisfies ReadonlyArray<{ href: Route; label: string }>
 
