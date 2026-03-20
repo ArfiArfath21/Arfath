@@ -1,15 +1,23 @@
 import projects from '@/content/projects.json'
-import { ProjectTile } from '@/components/project-tile'
+import { ProjectRow } from '@/components/project-row'
+import { SectionHeading } from '@/components/section-heading'
+import type { Project } from '@/types/site'
 
 export const metadata = { title: 'Work — Arfath Ahmed Syed' }
 
 export default function WorkPage() {
+  const allProjects = projects as Project[]
+
   return (
-    <div className="space-y-6">
-      <h1 className="font-heading text-3xl">Selected projects I loved building.</h1>
-      <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p) => (
-          <ProjectTile key={p.slug} project={p as any} />
+    <div className="space-y-12 md:space-y-14">
+      <SectionHeading
+        eyebrow="Work"
+        title="Selected AI and ML systems built with production realities in mind."
+        description="A short index of projects where the real work was not just modeling, but shaping the system, the workflow, and the delivery path around it."
+      />
+      <div className="space-y-5">
+        {allProjects.map((project) => (
+          <ProjectRow key={project.slug} project={project} compact />
         ))}
       </div>
     </div>

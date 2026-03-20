@@ -2,146 +2,107 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import type { Route } from 'next'
-import { Button } from '@/components/ui/button'
-import { useTheme } from 'next-themes'
-import { Moon, Sun } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+import { useState } from 'react'
 
 const links = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
   { href: '/work', label: 'Work' },
-  { href: '/awards', label: 'Awards' },
-  { href: '/netflix-plan', label: 'Netflix Plan' },
+  { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ] as const satisfies ReadonlyArray<{ href: Route; label: string }>
 
 export function Nav() {
   const pathname = usePathname()
-  const { theme, setTheme } = useTheme()
+  const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-md">
-      <div className="container-12 flex h-14 md:h-16 items-center justify-between">
-        <Link href="/" className="font-heading tracking-wide text-lg">
-          ARFATH
+    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/70 backdrop-blur-xl">
+      <div className="container-12 flex h-20 items-center justify-between gap-6">
+        <Link href="/" className="flex items-center gap-3 text-foreground">
+          <span className="font-heading text-sm tracking-[0.42em]">ARFATH</span>
+          <span className="hidden h-1 w-1 rounded-full bg-primary md:block" aria-hidden />
+          <span className="hidden text-[0.7rem] uppercase tracking-[0.3em] text-muted lg:block">
+            AI Systems
+          </span>
         </Link>
-        <nav className="hidden gap-1 md:flex">
+        <nav className="hidden items-center gap-1 md:flex">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={`rounded-xl px-3 py-2 text-sm hover:bg-white/5 ${
-                pathname === l.href ? 'text-primary' : 'text-foreground'
+              className={`rounded-full px-4 py-2 text-[0.72rem] uppercase tracking-[0.28em] transition-colors ${
+                pathname === l.href
+                  ? 'bg-white/6 text-foreground'
+                  : 'text-muted hover:text-foreground'
               }`}
             >
               {l.label}
             </Link>
           ))}
+        </nav>
+        <div className="hidden items-center gap-4 md:flex">
           <a
             href="https://theblogorithm.com"
             target="_blank"
             rel="noopener"
-            className="rounded-xl px-3 py-2 text-sm hover:bg-white/5 text-foreground"
+            className="meta-label hover:text-foreground"
             aria-label="Blog (opens in new tab)"
-            title="Blog ↗"
+            title="Blog"
           >
-            Blog ↗
+            Blog
           </a>
-        </nav>
-        <div className="flex items-center gap-2">
-          <button
-            className="md:hidden rounded-xl px-3 py-2 text-sm hover:bg-white/5"
-            aria-label="Open menu"
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-            onClick={(e) => {
-              const menu = document.getElementById('mobile-menu')
-              const overlay = document.getElementById('menu-overlay')
-              if (menu && overlay) {
-                const open = menu.dataset.open === 'true'
-                menu.dataset.open = open ? 'false' : 'true'
-                overlay.classList.toggle('hidden', open)
-                ;(e.currentTarget as HTMLButtonElement).setAttribute('aria-expanded', String(!open))
-              }
-            }}
+          <a
+            href="mailto:arfiarfath0305@gmail.com"
+            className="rounded-full border border-border bg-white/5 px-4 py-2 text-[0.72rem] uppercase tracking-[0.28em] text-foreground transition hover:bg-white/10"
           >
-            ☰
-          </button>
-          <Button
-            variant="ghost"
-            magnetic={false}
-            aria-label="Toggle theme"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          >
-            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-          </Button>
+            Email
+          </a>
         </div>
+        <button
+          className="rounded-full border border-border bg-white/5 p-3 text-foreground transition hover:bg-white/10 md:hidden"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-controls="mobile-menu"
+          aria-expanded={open}
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? <X size={18} /> : <Menu size={18} />}
+        </button>
       </div>
       <div
         id="mobile-menu"
-        data-open="false"
-        className="md:hidden fixed inset-x-0 top-14 z-50 border-t border-border bg-background/95 backdrop-blur-md shadow-soft origin-top overflow-hidden max-h-[28vh] -translate-y-2 scale-y-0 opacity-0 pointer-events-none transition-all duration-200 data-[open=true]:translate-y-0 data-[open=true]:scale-y-100 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto data-[open=true]:overflow-y-auto"
+        className={`border-t border-border/80 bg-background/95 backdrop-blur-xl transition-all duration-200 md:hidden ${
+          open ? 'pointer-events-auto max-h-[28rem] opacity-100' : 'pointer-events-none max-h-0 opacity-0'
+        } overflow-hidden`}
       >
-        <div className="container-12 flex flex-col py-1">
+        <div className="container-12 flex flex-col gap-1 py-4">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={`rounded-xl px-3 py-1.5 text-sm hover:bg-white/5 ${
-                pathname === l.href ? 'text-primary' : 'text-foreground'
+              className={`rounded-[1.35rem] px-4 py-3 text-sm uppercase tracking-[0.26em] ${
+                pathname === l.href ? 'bg-white/6 text-foreground' : 'text-muted'
               }`}
-              onClick={() => {
-                const menu = document.getElementById('mobile-menu')
-                const overlay = document.getElementById('menu-overlay')
-                if (menu && overlay) {
-                  menu.dataset.open = 'false'
-                  overlay.classList.add('hidden')
-                  const toggle = document.querySelector(
-                    'button[aria-controls="mobile-menu"]'
-                  ) as HTMLButtonElement | null
-                  if (toggle) toggle.setAttribute('aria-expanded', 'false')
-                }
-              }}
+              onClick={() => setOpen(false)}
             >
               {l.label}
             </Link>
           ))}
-          <a
-            href="https://theblogorithm.com"
-            target="_blank"
-            rel="noopener"
-            className="rounded-xl px-3 py-1.5 text-sm hover:bg-white/5 text-foreground"
-            onClick={() => {
-              const menu = document.getElementById('mobile-menu')
-              const overlay = document.getElementById('menu-overlay')
-              if (menu && overlay) {
-                menu.dataset.open = 'false'
-                overlay.classList.add('hidden')
-                const toggle = document.querySelector(
-                  'button[aria-controls="mobile-menu"]'
-                ) as HTMLButtonElement | null
-                if (toggle) toggle.setAttribute('aria-expanded', 'false')
-              }
-            }}
-          >
-            Blog ↗
-          </a>
+          <div className="mt-3 flex items-center gap-4 px-1">
+            <a
+              href="https://theblogorithm.com"
+              target="_blank"
+              rel="noopener"
+              className="meta-label hover:text-foreground"
+            >
+              Blog
+            </a>
+            <a href="mailto:arfiarfath0305@gmail.com" className="meta-label hover:text-foreground">
+              Email
+            </a>
+          </div>
         </div>
       </div>
-      <div
-        id="menu-overlay"
-        className="hidden fixed inset-0 z-40 bg-black/30 md:hidden"
-        onClick={() => {
-          const menu = document.getElementById('mobile-menu')
-          if (menu) menu.dataset.open = 'false'
-          const overlay = document.getElementById('menu-overlay')
-          if (overlay) overlay.classList.add('hidden')
-          const toggle = document.querySelector(
-            'button[aria-controls="mobile-menu"]'
-          ) as HTMLButtonElement | null
-          if (toggle) toggle.setAttribute('aria-expanded', 'false')
-        }}
-      />
     </header>
   )
 }
