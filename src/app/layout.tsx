@@ -6,11 +6,11 @@ import { Footer } from '@/components/footer'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://arfath.me'),
-  title: 'Arfath Ahmed Syed — AI systems built for production',
+  title: 'Arfath Ahmed Syed',
   description:
     'Senior Data Scientist designing and shipping AI systems that hold up in production. Selected work, writing, and contact.',
   openGraph: {
-    title: 'Arfath Ahmed Syed — AI systems built for production',
+    title: 'Arfath Ahmed Syed',
     description:
       'Senior Data Scientist designing and shipping AI systems that hold up in production. Selected work, writing, and contact.',
     type: 'website',

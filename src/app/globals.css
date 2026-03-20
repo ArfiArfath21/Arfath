@@ -127,61 +127,62 @@ a {
 
 .hero-atmosphere {
   position: absolute;
-  left: 0;
-  top: 0.8rem;
-  height: min(34rem, 72vh);
-  width: min(60rem, 72vw);
+  left: calc(50% - 50vw);
+  top: -5rem;
+  height: min(40rem, 78vh);
+  width: 100vw;
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
   opacity: 0.98;
 }
 
 .hero-atmosphere::before {
   content: '';
   position: absolute;
-  inset: 2% 8% 18% 0;
-  border-radius: 999px;
+  inset: 0;
   background:
-    radial-gradient(circle at 28% 46%, rgb(var(--hero-primary-rgb) / 0.22), transparent 48%),
-    radial-gradient(circle at 56% 24%, rgb(var(--hero-secondary-rgb) / 0.15), transparent 42%),
-    radial-gradient(circle at 42% 56%, rgba(255, 255, 255, 0.03), transparent 62%);
-  filter: blur(34px);
-  opacity: 0.95;
-  transform: rotate(-7deg);
+    radial-gradient(58rem 36rem at 0% 16%, rgb(var(--hero-primary-rgb) / 0.18), transparent 68%),
+    radial-gradient(34rem 24rem at 24% 9%, rgb(var(--hero-secondary-rgb) / 0.16), transparent 70%),
+    radial-gradient(24rem 18rem at 20% 44%, rgba(255, 255, 255, 0.03), transparent 74%);
+  filter: blur(24px);
+  -webkit-mask-image: radial-gradient(74rem 44rem at 4% 16%, black 34%, rgba(0, 0, 0, 0.9) 58%, transparent 100%);
+  mask-image: radial-gradient(74rem 44rem at 4% 16%, black 34%, rgba(0, 0, 0, 0.9) 58%, transparent 100%);
 }
 
 .hero-atmosphere::after {
   content: '';
   position: absolute;
-  inset: 8% 16% 22% 6%;
-  border-radius: 999px;
+  inset: 0;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 26%, transparent 74%, rgba(255, 255, 255, 0.012)),
-    radial-gradient(circle at 34% 34%, rgb(var(--hero-beam-rgb) / 0.08), transparent 54%);
-  filter: blur(18px);
-  opacity: 0.34;
-  transform: rotate(-4deg);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.045), transparent 18%, transparent 74%, rgba(255, 255, 255, 0.014)),
+    radial-gradient(26rem 18rem at 10% 22%, rgb(var(--hero-beam-rgb) / 0.075), transparent 72%);
+  filter: blur(12px);
+  opacity: 0.2;
+  -webkit-mask-image: radial-gradient(66rem 40rem at 6% 18%, black 28%, rgba(0, 0, 0, 0.82) 56%, transparent 100%);
+  mask-image: radial-gradient(66rem 40rem at 6% 18%, black 28%, rgba(0, 0, 0, 0.82) 56%, transparent 100%);
 }
 
 @media (max-width: 1023px) {
   .hero-atmosphere {
-    top: 0.75rem;
-    height: 25rem;
-    width: min(38rem, 100%);
+    left: calc(50% - 50vw);
+    top: -2.5rem;
+    height: 28rem;
+    width: 100vw;
   }
 
   .hero-atmosphere::before {
-    inset: 2% 0 20% 0;
+    inset: 0;
     background:
-      radial-gradient(circle at 28% 34%, rgb(var(--hero-primary-rgb) / 0.18), transparent 50%),
-      radial-gradient(circle at 56% 22%, rgb(var(--hero-secondary-rgb) / 0.12), transparent 44%),
-      radial-gradient(circle at 40% 56%, rgba(255, 255, 255, 0.024), transparent 62%);
-    filter: blur(28px);
+      radial-gradient(28rem 21rem at 0% 18%, rgb(var(--hero-primary-rgb) / 0.16), transparent 70%),
+      radial-gradient(18rem 14rem at 28% 14%, rgb(var(--hero-secondary-rgb) / 0.12), transparent 72%),
+      radial-gradient(14rem 12rem at 22% 48%, rgba(255, 255, 255, 0.024), transparent 74%);
+    filter: blur(18px);
   }
 
   .hero-atmosphere::after {
-    inset: 8% 8% 24% 4%;
-    filter: blur(14px);
+    inset: 0;
+    filter: blur(9px);
   }
 }
 
