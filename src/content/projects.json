@@ -1,40 +1,98 @@
 [
   {
+    "slug": "arx",
+    "title": "Arx",
+    "kicker": "Personal memory layer",
+    "headline": "A personal memory layer that captures what you encounter, threads the patterns, and gives it back when it matters.",
+    "result": "Built as a private-by-default memory system for people who consume a lot, remember too little, and want real recall in conversation.",
+    "role": "Founder / Product Design / AI Systems",
+    "year": "2026",
+    "stack": ["Voice, text, image", "Memory graph", "Context retrieval", "Private by default"],
+    "metrics": [
+      "Capture / thread / recall",
+      "Built for live conversational recall",
+      "Personal tool with product-grade framing"
+    ],
+    "impact": [
+      "Turns scattered inputs into connected memory",
+      "Designed for curious people, not note-taking power users",
+      "Newest personal product build"
+    ],
+    "primaryLink": {
+      "href": "https://arx.arfath.me/",
+      "label": "Visit Arx",
+      "external": true
+    },
+    "featured": true,
+    "homePriority": 0,
+    "status": "new",
+    "accentTone": "green"
+  },
+  {
     "slug": "insights-iq",
     "title": "Insights IQ",
+    "kicker": "Enterprise GenAI analytics platform",
+    "headline": "Secure, agentic analytics for enterprise teams moving from experimentation to governed production.",
+    "result": "Launched a multi-tenant AI analytics product with orchestrated pipelines, rollout controls, and production guardrails.",
     "role": "Product Lead & Architect",
     "year": "2024–25",
-    "stack": ["LangGraph", "FAISS", "FastAPI", "K8s", "gRPC", "Ray/Celery"],
-    "summary": "Enterprise GenAI analytics with agentic orchestration, dynamic pipelines, and secure multi-tenant MLOps. Launched on AWS Marketplace.",
+    "stack": ["LangGraph", "FAISS", "FastAPI", "Kubernetes", "gRPC", "Ray / Celery"],
+    "metrics": [
+      "AWS Marketplace launch",
+      "Multi-tenant security model",
+      "Rollback and observability paths"
+    ],
     "impact": [
-      "Cut time-to-insight for analysts",
-      "Hardened reliability with observability & rollback",
+      "Cut analyst time-to-insight",
+      "Improved reliability under production load",
       "Enabled secure enterprise adoption"
     ],
-    "links": { "caseStudy": "/work/insights-iq", "demo": "", "repo": "" },
-    "cover": "/images/insights-iq-cover.png"
+    "cover": "/images/insights-iq-cover.png",
+    "featured": true,
+    "homePriority": 1,
+    "accentTone": "red"
   },
   {
     "slug": "aiba-genai-recommender",
     "title": "AIBA GenAI Recommender",
+    "kicker": "Recommendation system modernization",
+    "headline": "A self-service GenAI recommendation engine built to replace brittle legacy exploration flows.",
+    "result": "Reshaped a legacy recsys into a faster, more discoverable GenAI search and recommendation experience.",
     "role": "Lead Developer (Data)",
     "year": "2024",
     "stack": ["Vector search", "Hybrid search", "RAG", "Caching", "Async"],
-    "summary": "Modernized legacy ML recsys into self-service GenAI engine for exploration and zero-shot personalization.",
-    "impact": ["70% latency reduction", "20% earlier-stage cut", "Improved engagement & accuracy"],
-    "links": { "caseStudy": "/work/aiba", "repo": "" },
-    "cover": "/images/aiba-cover.png"
+    "metrics": [
+      "70 percent latency reduction",
+      "Earlier-stage effort reduced by 20 percent",
+      "Improved engagement and accuracy"
+    ],
+    "impact": [
+      "Reduced response time significantly",
+      "Simplified discovery for end users",
+      "Lifted quality without adding operational drag"
+    ],
+    "cover": "/images/aiba-cover.png",
+    "featured": true,
+    "homePriority": 2,
+    "accentTone": "blue"
   },
   {
     "slug": "slingshot-copilot",
     "title": "Slingshot — AI Copilot for DS",
+    "kicker": "Internal workflow copilot",
+    "headline": "An internal copilot that compressed repetitive DS work across prompting, scaffolding, and review loops.",
+    "result": "Improved iteration speed across the data science lifecycle without turning quality control into an afterthought.",
     "role": "Tech Lead",
     "year": "2023–24",
     "stack": ["Prompt ops", "Scaffolding", "Code review"],
-    "summary": "Accelerated DS workflows across SDLC (prompt ops, scaffolding, code review suggestions).",
-    "impact": ["Faster iteration", "Higher quality"],
-    "links": { "caseStudy": "/work/slingshot" },
-    "cover": "/images/slingshot-cover.png"
+    "metrics": [
+      "Reduced repetitive setup work",
+      "Faster review and feedback loops",
+      "Better consistency across teams"
+    ],
+    "impact": ["Faster iteration", "Higher quality", "Lower friction in daily DS workflows"],
+    "cover": "/images/slingshot-cover.png",
+    "featured": false,
+    "accentTone": "amber"
   }
 ]
-

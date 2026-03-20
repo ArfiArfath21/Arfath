@@ -15,9 +15,9 @@ export function ogImage({ title, subtitle }: { title: string; subtitle?: string 
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          padding: '60px',
-          background: '#0B0B0F',
-          color: '#E8EAF2',
+          padding: '72px',
+          background: '#060708',
+          color: '#e9edf6',
           fontSize: 56,
         }}
       >
@@ -26,14 +26,33 @@ export function ogImage({ title, subtitle }: { title: string; subtitle?: string 
             position: 'absolute',
             inset: 0,
             background:
-              'radial-gradient(400px 400px at 20% 30%, rgba(79,139,255,0.25), transparent), radial-gradient(400px 400px at 80% 70%, rgba(41,211,145,0.25), transparent), radial-gradient(400px 400px at 60% 30%, rgba(155,107,255,0.25), transparent)',
+              'radial-gradient(520px 520px at 16% 18%, rgba(82,182,145,0.22), transparent), radial-gradient(440px 440px at 82% 16%, rgba(27,64,59,0.24), transparent), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01))',
           }}
         />
-        <div style={{ fontWeight: 700 }}>{title}</div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '18px',
+            position: 'relative',
+          }}
+        >
+          <div
+            style={{
+              fontSize: 20,
+              letterSpacing: '0.32em',
+              textTransform: 'uppercase',
+              color: 'rgba(134, 228, 191, 0.82)',
+            }}
+          >
+            Arfath Ahmed Syed
+          </div>
+          <div style={{ fontWeight: 700, lineHeight: 1 }}>{title}</div>
+        </div>
         {subtitle ? (
-          <div style={{ fontSize: 32, marginTop: 12, color: '#9AA0AE' }}>{subtitle}</div>
+          <div style={{ fontSize: 30, marginTop: 16, color: '#9aa7bf', maxWidth: 900 }}>{subtitle}</div>
         ) : null}
-        <div style={{ fontSize: 24, marginTop: 28, color: '#9AA0AE' }}>arfath.me</div>
+        <div style={{ fontSize: 24, marginTop: 34, color: '#9aa7bf' }}>arfath.me</div>
       </div>
     ),
     { ...size }

@@ -20,6 +20,29 @@ type PlannerProps = {
 }
 
 export function NetflixReadingPlanner({ planned }: PlannerProps) {
+  if (planned.length === 0) {
+    return (
+      <div className="surface-panel px-6 py-7 md:px-8 md:py-9">
+        <p className="meta-label">Feed unavailable</p>
+        <h2 className="mt-4 font-heading text-3xl text-foreground">The archive is not loading right now.</h2>
+        <p className="mt-4 max-w-2xl text-sm leading-7 text-muted md:text-base">
+          The Netflix Tech Blog feed could not be fetched at build time. This page stays online as a
+          utility, but the reading queue needs the remote feed to render.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a
+            href="https://netflixtechblog.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full border border-primary/35 bg-primary/12 px-5 py-3 text-[0.72rem] uppercase tracking-[0.24em] text-foreground transition hover:-translate-y-0.5 hover:bg-primary/18"
+          >
+            Open Netflix Tech Blog
+          </a>
+        </div>
+      </div>
+    )
+  }
+
   const today = useMemo(() => new Date(), [])
   const todayIndex = planned.findIndex((item) => isSameDay(new Date(item.readingDate), today))
   const [activeIndex, setActiveIndex] = useState(todayIndex === -1 ? 0 : todayIndex)
@@ -36,12 +59,12 @@ export function NetflixReadingPlanner({ planned }: PlannerProps) {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 rounded-2xl border border-border bg-gradient-to-r from-primary/10 via-transparent to-primary/5 p-5 shadow-soft md:flex-row md:items-center md:justify-between">
+      <div className="surface-panel flex flex-col gap-6 px-6 py-7 md:flex-row md:items-center md:justify-between md:px-8 md:py-8">
         <div className="space-y-2">
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-primary">daily spotlight</p>
+          <p className="meta-label text-primary/80">Daily spotlight</p>
           {active ? (
-            <div className="space-y-1">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm text-muted">
                 <CalendarClock size={16} />
                 <span>Reading day {active.readingNumber} · {formatDate(new Date(active.readingDate))}</span>
               </div>
@@ -49,20 +72,23 @@ export function NetflixReadingPlanner({ planned }: PlannerProps) {
                 href={active.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-start gap-2 rounded-lg text-left text-lg font-semibold leading-tight hover:text-primary"
+                className="group inline-flex items-start gap-2 rounded-lg text-left text-xl font-semibold leading-tight text-foreground hover:text-primary md:text-2xl"
               >
                 {active.title}
-                <ExternalLink size={16} className="mt-1 opacity-70 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ExternalLink
+                  size={16}
+                  className="mt-1 opacity-70 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
               </a>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted">
                 Published {formatDate(new Date(active.publishedAt))}
               </p>
               {active.summary ? (
-                <p className="text-sm text-muted-foreground line-clamp-2">{active.summary}</p>
+                <p className="max-w-2xl text-sm leading-7 text-muted">{active.summary}</p>
               ) : null}
             </div>
           ) : (
-            <p className="text-muted-foreground">No blog scheduled for today yet. The queue will light up tomorrow.</p>
+            <p className="text-muted">No blog scheduled for today yet. The queue will light up tomorrow.</p>
           )}
         </div>
         <div className="flex items-center gap-3 self-start md:self-auto">
@@ -84,20 +110,23 @@ export function NetflixReadingPlanner({ planned }: PlannerProps) {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-border bg-card p-4 shadow-soft">
+      <div className="surface-panel-muted px-5 py-5 md:px-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-1">
-            <h2 className="font-heading text-xl">Browse the queue</h2>
-            <p className="text-sm text-muted-foreground">
-              Switch between your reading schedule and the original publication order. Click any title to read it on Netflix&apos;s site.
+            <h2 className="font-heading text-2xl text-foreground">Browse the queue</h2>
+            <p className="text-sm leading-7 text-muted">
+              Switch between your reading schedule and the original publication order. Click any
+              title to read it on Netflix&apos;s site.
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <ListFilter size={18} className="text-muted-foreground" />
-            <div className="rounded-xl border border-border bg-background p-1 text-sm">
+            <ListFilter size={18} className="text-muted" />
+            <div className="rounded-full border border-border bg-background/70 p-1 text-sm">
               <button
-                className={`rounded-lg px-3 py-1 transition ${
-                  sortMode === 'reading' ? 'bg-primary text-primary-foreground shadow-sm' : 'hover:bg-muted'
+                className={`rounded-full px-4 py-2 text-[0.72rem] uppercase tracking-[0.22em] transition ${
+                  sortMode === 'reading'
+                    ? 'bg-white/8 text-foreground'
+                    : 'text-muted hover:text-foreground'
                 }`}
                 onClick={() => setSortMode('reading')}
                 aria-pressed={sortMode === 'reading'}
@@ -105,8 +134,10 @@ export function NetflixReadingPlanner({ planned }: PlannerProps) {
                 Reading dates
               </button>
               <button
-                className={`rounded-lg px-3 py-1 transition ${
-                  sortMode === 'published' ? 'bg-primary text-primary-foreground shadow-sm' : 'hover:bg-muted'
+                className={`rounded-full px-4 py-2 text-[0.72rem] uppercase tracking-[0.22em] transition ${
+                  sortMode === 'published'
+                    ? 'bg-white/8 text-foreground'
+                    : 'text-muted hover:text-foreground'
                 }`}
                 onClick={() => setSortMode('published')}
                 aria-pressed={sortMode === 'published'}
@@ -117,45 +148,44 @@ export function NetflixReadingPlanner({ planned }: PlannerProps) {
           </div>
         </div>
 
-        <div className="mt-4 divide-y divide-border rounded-xl border border-border overflow-hidden">
-          {sortedList.length === 0 ? (
-            <div className="p-4 text-sm text-muted-foreground">
-              Unable to load the Netflix Tech Blog feed right now. Try again later or check your connection.
-            </div>
-          ) : (
-            sortedList.map((item) => {
-              const readingDayLabel = `Blog ${item.readingNumber} · ${formatDate(new Date(item.readingDate))}`
-              const isToday = isSameDay(new Date(item.readingDate), today)
+        <div className="mt-5 space-y-3">
+          {sortedList.map((item) => {
+            const readingDayLabel = `Blog ${item.readingNumber} · ${formatDate(new Date(item.readingDate))}`
+            const isToday = isSameDay(new Date(item.readingDate), today)
 
-              return (
-                <div
-                  key={`${item.id}-${sortMode}-${item.readingNumber}`}
-                  className={`flex flex-col gap-2 bg-background/40 px-4 py-3 sm:flex-row sm:items-center sm:justify-between ${
-                    isToday ? 'border-l-4 border-primary' : ''
-                  }`}
-                >
-                  <div className="space-y-1">
-                    <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            return (
+              <div
+                key={`${item.id}-${sortMode}-${item.readingNumber}`}
+                className={`rounded-[1.5rem] border border-border bg-background/40 px-4 py-4 sm:px-5 ${
+                  isToday ? 'border-primary/40 bg-primary/[0.06]' : ''
+                }`}
+              >
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted">
                       <span className="inline-flex items-center gap-1">
                         <CalendarDays size={14} /> {readingDayLabel}
                       </span>
-                      <span className="h-1 w-1 rounded-full bg-muted-foreground" aria-hidden />
+                      <span className="h-1 w-1 rounded-full bg-white/25" aria-hidden />
                       <span>Published {formatDate(new Date(item.publishedAt))}</span>
                     </div>
                     <a
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-start gap-2 text-base font-semibold leading-tight hover:text-primary"
+                      className="group inline-flex items-start gap-2 text-base font-semibold leading-tight text-foreground hover:text-primary"
                     >
                       {item.title}
-                      <ExternalLink size={14} className="mt-0.5 opacity-70 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      <ExternalLink
+                        size={14}
+                        className="mt-0.5 opacity-70 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
                     </a>
                     {item.summary ? (
-                      <p className="text-sm text-muted-foreground line-clamp-2">{item.summary}</p>
+                      <p className="max-w-3xl text-sm leading-7 text-muted">{item.summary}</p>
                     ) : null}
                   </div>
-                  <div className="flex items-center gap-2 self-end sm:self-auto">
+                  <div className="flex flex-wrap items-center gap-2">
                     <Button
                       variant="outline"
                       magnetic={false}
@@ -166,7 +196,7 @@ export function NetflixReadingPlanner({ planned }: PlannerProps) {
                           window.scrollTo({ top: 0, behavior: 'smooth' })
                         }
                       }}
-                      className="px-3 py-2 text-sm"
+                      className="px-4 py-3"
                     >
                       Jump to day
                     </Button>
@@ -174,16 +204,16 @@ export function NetflixReadingPlanner({ planned }: PlannerProps) {
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-lg border border-border bg-muted px-3 py-2 text-sm font-medium hover:bg-muted/80"
+                      className="inline-flex items-center gap-2 rounded-full border border-border bg-white/[0.03] px-4 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-foreground transition hover:-translate-y-0.5 hover:border-white/15 hover:bg-white/[0.06]"
                     >
                       Open blog
                       <ExternalLink size={14} />
                     </a>
                   </div>
                 </div>
-              )
-            })
-          )}
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>

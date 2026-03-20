@@ -1,6 +1,20 @@
-import { Inter, JetBrains_Mono, Sora } from 'next/font/google'
+import { IBM_Plex_Mono, Manrope, Space_Grotesk } from 'next/font/google'
 
-export const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-export const sora = Sora({ subsets: ['latin'], variable: '--font-sora' })
-export const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains' })
+export const manrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-manrope',
+  display: 'swap',
+})
 
+export const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
+})
+
+export const plexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  variable: '--font-plex-mono',
+  weight: ['400', '500'],
+  display: 'swap',
+})

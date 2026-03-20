@@ -1,15 +1,106 @@
 {
   "name": "Arfath Ahmed Syed",
-  "tagline": "I build AI that ships.",
+  "tagline": "AI systems built for production.",
   "location": "Hyderabad, India",
   "email": "arfiarfath0305@gmail.com",
   "social": {
-    "linkedin": "https://www.linkedin.com/in/arfath21/",
+    "linkedin": "https://www.linkedin.com/in/ArfiArfath21/",
     "github": "https://github.com/ArfiArfath21"
   },
-  "stats": [
-    { "label": "Years shipping AI", "value": 3 },
-    { "label": "Team size led", "value": 12 }
+  "heroEyebrow": "Senior Data Scientist / AI Product Builder",
+  "heroHeadline": "I design and ship AI systems that survive real production constraints.",
+  "heroIntro": "From agentic orchestration to deployment and adoption, I turn research-heavy AI work into products teams can trust, operate, and scale.",
+  "credibilityItems": [
+    { "value": "3+", "label": "years shipping AI products" },
+    { "value": "12", "label": "cross-functional team members led" },
+    { "value": "AWS", "label": "marketplace launch experience" }
+  ],
+  "principles": [
+    {
+      "title": "From prototype to operating model",
+      "description": "I work across architecture, evaluation, latency, observability, rollout, and adoption so the system holds up after launch."
+    },
+    {
+      "title": "Product sense over demo polish",
+      "description": "The target is not a clever model in isolation. It is a workflow people rely on under deadlines, cost limits, and operational pressure."
+    },
+    {
+      "title": "Clear tradeoffs, calmer systems",
+      "description": "I prefer explicit guardrails, measurable quality, and steady delivery over complexity for its own sake."
+    }
+  ],
+  "secondaryLinks": [
+    {
+      "title": "Arx",
+      "href": "https://arx.arfath.me/",
+      "desc": "A personal memory layer built around capture, thread, and recall.",
+      "kind": "Newest Project",
+      "tag": "New",
+      "accentTone": "green"
+    },
+    {
+      "title": "Blogs",
+      "href": "https://blogs.arfath.me/",
+      "desc": "Writing on AI, engineering decisions, and experiments worth keeping.",
+      "kind": "Writing",
+      "accentTone": "red"
+    },
+    {
+      "title": "Tax Calculator",
+      "href": "https://tax-calculator.arfath.me",
+      "desc": "A stripped-back utility with a practical product lens.",
+      "kind": "Utility",
+      "accentTone": "blue"
+    },
+    {
+      "title": "Snake Xenzia",
+      "href": "https://snake.arfath.me",
+      "desc": "A nostalgic side build with a cleaner execution than it probably deserved.",
+      "kind": "Side Project",
+      "accentTone": "amber"
+    }
+  ],
+  "aboutLead": "I build AI systems end to end: problem framing, system design, production rollout, and the operational detail that makes those systems dependable.",
+  "aboutBio": "My recent work sits at the intersection of product, applied ML, and platform engineering. I have led enterprise GenAI builds, modernized recommendation systems, and shipped internal copilots for data workflows. The common thread is taking ambiguous, research-heavy work and turning it into software that teams can actually run and trust.",
+  "capabilities": [
+    {
+      "title": "Systems",
+      "items": [
+        "Agentic orchestration",
+        "RAG and retrieval systems",
+        "ML platform design",
+        "Evaluation and guardrails"
+      ]
+    },
+    {
+      "title": "Delivery",
+      "items": [
+        "FastAPI and service design",
+        "Kubernetes and MLOps",
+        "Observability and rollback paths",
+        "Cross-functional technical leadership"
+      ]
+    },
+    {
+      "title": "Product",
+      "items": [
+        "Opportunity framing",
+        "Workflow design",
+        "Adoption planning",
+        "Reliability and cost tradeoffs"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "period": "2022 - present",
+      "title": "Senior Associate - Data Science, Publicis Sapient",
+      "description": "Leading product and architecture work for enterprise AI systems, including multi-agent analytics, recommendation modernization, and production MLOps."
+    },
+    {
+      "period": "2020 - 2021",
+      "title": "Business Analyst Intern, Saras Analytics",
+      "description": "Worked on churn modeling, time-series forecasting, and foundational analytics delivery for business stakeholders."
+    }
   ]
 }
-
