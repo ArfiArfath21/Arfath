@@ -6,14 +6,16 @@ import type { Project } from '@/types/site'
 export const metadata = { title: 'Work — Arfath Ahmed Syed' }
 
 export default function WorkPage() {
-  const allProjects = projects as Project[]
+  const allProjects = [...(projects as Project[])].sort(
+    (left, right) => (left.homePriority ?? 999) - (right.homePriority ?? 999)
+  )
 
   return (
     <div className="space-y-12 md:space-y-14">
       <SectionHeading
         eyebrow="Work"
-        title="Selected AI and ML systems built with production realities in mind."
-        description="A short index of projects where the real work was not just modeling, but shaping the system, the workflow, and the delivery path around it."
+        title="Selected systems and products, starting with the newest personal build."
+        description="Arx leads this index, followed by enterprise work where delivery quality depended as much on system design and operating detail as it did on the model itself."
       />
       <div className="space-y-5">
         {allProjects.map((project) => (

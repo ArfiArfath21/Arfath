@@ -4,7 +4,7 @@
   "location": "Hyderabad, India",
   "email": "arfiarfath0305@gmail.com",
   "social": {
-    "linkedin": "https://www.linkedin.com/in/arfath21/",
+    "linkedin": "https://www.linkedin.com/in/ArfiArfath21/",
     "github": "https://github.com/ArfiArfath21"
   },
   "heroEyebrow": "Senior Data Scientist / AI Product Builder",
@@ -13,8 +13,7 @@
   "credibilityItems": [
     { "value": "3+", "label": "years shipping AI products" },
     { "value": "12", "label": "cross-functional team members led" },
-    { "value": "AWS", "label": "marketplace launch experience" },
-    { "value": "GCP", "label": "professional ML certification" }
+    { "value": "AWS", "label": "marketplace launch experience" }
   ],
   "principles": [
     {
@@ -32,34 +31,33 @@
   ],
   "secondaryLinks": [
     {
-      "title": "The Blogorithm",
-      "href": "https://theblogorithm.com",
+      "title": "Arx",
+      "href": "https://arx.arfath.me/",
+      "desc": "A personal memory layer built around capture, thread, and recall.",
+      "kind": "Newest Project",
+      "tag": "New",
+      "accentTone": "green"
+    },
+    {
+      "title": "Blogs",
+      "href": "https://blogs.arfath.me/",
       "desc": "Writing on AI, engineering decisions, and experiments worth keeping.",
-      "kind": "Writing"
+      "kind": "Writing",
+      "accentTone": "red"
     },
     {
       "title": "Tax Calculator",
       "href": "https://tax-calculator.arfath.me",
       "desc": "A stripped-back utility with a practical product lens.",
-      "kind": "Utility"
+      "kind": "Utility",
+      "accentTone": "blue"
     },
     {
       "title": "Snake Xenzia",
       "href": "https://snake.arfath.me",
       "desc": "A nostalgic side build with a cleaner execution than it probably deserved.",
-      "kind": "Side Project"
-    },
-    {
-      "title": "Awards & Certifications",
-      "href": "/awards",
-      "desc": "Recognitions, certifications, and recent milestones.",
-      "kind": "Proof"
-    },
-    {
-      "title": "Netflix Tech Blog Navigator",
-      "href": "/netflix-plan",
-      "desc": "A reading utility for moving through the Netflix Tech Blog archive.",
-      "kind": "Utility"
+      "kind": "Side Project",
+      "accentTone": "amber"
     }
   ],
   "aboutLead": "I build AI systems end to end: problem framing, system design, production rollout, and the operational detail that makes those systems dependable.",

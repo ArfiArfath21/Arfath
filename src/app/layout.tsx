@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" data-scroll-behavior="smooth">
       <head>
         {process.env.NODE_ENV === 'production' ? (
           <script defer data-domain="arfath.me" src="https://plausible.io/js/script.js" />

@@ -9,8 +9,8 @@ type Quick = {
 
 const LINKS: Quick[] = [
   {
-    title: 'The Blogorithm',
-    href: 'https://theblogorithm.com',
+    title: 'Blogs',
+    href: 'https://blogs.arfath.me/',
     desc: 'My writing, notes, and experiments',
     icon: <Newspaper />,
   },

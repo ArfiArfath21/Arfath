@@ -1,9 +1,14 @@
-export const metadata = { title: 'About — Arfath Ahmed Syed' }
-import { ResumeAccordion } from '@/components/resume-accordion'
+import { ArrowUpRight } from 'lucide-react'
 import profile from '@/content/profile.json'
 import { recognition } from '@/content/recognition'
 import { SectionHeading } from '@/components/section-heading'
-import type { Profile } from '@/types/site'
+import { toneAccentStyles, toneGlowBackgrounds } from '@/lib/accent'
+import type { AccentTone, Profile } from '@/types/site'
+
+export const metadata = { title: 'About — Arfath Ahmed Syed' }
+
+const capabilityTones: AccentTone[] = ['green', 'red', 'blue']
+const recognitionTones: AccentTone[] = ['green', 'red', 'blue', 'amber']
 
 export default function AboutPage() {
   const profileData = profile as Profile
@@ -16,24 +21,68 @@ export default function AboutPage() {
         description={profileData.aboutLead}
       />
 
-      <section className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(18rem,0.9fr)]">
-        <div className="surface-panel px-6 py-7 md:px-8 md:py-9">
-          <p className="meta-label">Approach</p>
-          <p className="mt-4 max-w-3xl text-base leading-8 text-muted md:text-lg">
-            {profileData.aboutBio}
-          </p>
+      <section className="grid gap-6 lg:grid-cols-[minmax(0,1.18fr)_minmax(19rem,0.82fr)]">
+        <div className="surface-panel relative overflow-hidden px-6 py-7 md:px-8 md:py-9">
+          <div
+            className="pointer-events-none absolute inset-0 opacity-85"
+            style={{ background: toneGlowBackgrounds.green }}
+          />
+          <div className="relative space-y-6">
+            <div className="space-y-3">
+              <p className="meta-label text-primary/85">Overview</p>
+              <h2 className="max-w-3xl font-heading text-3xl leading-tight text-foreground md:text-4xl">
+                I work where applied AI, product ambiguity, and production constraints all show up
+                at once.
+              </h2>
+            </div>
+            <p className="max-w-3xl text-base leading-8 text-muted md:text-lg">
+              {profileData.aboutBio}
+            </p>
+          </div>
         </div>
-        <div className="surface-panel px-6 py-7 md:px-8 md:py-9">
-          <p className="meta-label">Base</p>
-          <div className="mt-4 space-y-4 text-sm leading-7 text-muted md:text-base">
-            <p>{profileData.location}</p>
-            <p>Open to product-facing AI, ML platform, and senior applied engineering roles.</p>
-            <a
-              href={`mailto:${profileData.email}`}
-              className="inline-flex rounded-full border border-border bg-white/[0.04] px-4 py-2 text-[0.72rem] uppercase tracking-[0.24em] text-foreground transition hover:border-white/15 hover:bg-white/[0.08]"
-            >
-              {profileData.email}
-            </a>
+
+        <div className="grid gap-5">
+          <div className="surface-row relative overflow-hidden px-6 py-6 md:px-7">
+            <div
+              className="pointer-events-none absolute inset-0 opacity-80"
+              style={{ background: toneGlowBackgrounds.red }}
+            />
+            <div className="relative space-y-4">
+              <p className="meta-label">Base</p>
+              <div className="space-y-3 text-sm leading-7 text-foreground md:text-base">
+                <p>{profileData.location}</p>
+                <p>Open to product-facing AI, ML platform, and senior applied engineering roles.</p>
+              </div>
+              <a
+                href={`mailto:${profileData.email}`}
+                className="inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-foreground transition hover:text-primary"
+              >
+                Email
+                <ArrowUpRight size={15} style={{ color: toneAccentStyles.red.color }} />
+              </a>
+            </div>
+          </div>
+
+          <div className="surface-row relative overflow-hidden px-6 py-6 md:px-7">
+            <div
+              className="pointer-events-none absolute inset-0 opacity-80"
+              style={{ background: toneGlowBackgrounds.blue }}
+            />
+            <div className="relative space-y-4">
+              <p className="meta-label">Operating Style</p>
+              <ul className="space-y-3">
+                {profileData.principles.map((item) => (
+                  <li key={item.title} className="flex items-start gap-3 text-sm leading-7 text-foreground md:text-base">
+                    <span
+                      className="mt-2 h-1.5 w-1.5 rounded-full"
+                      style={{ backgroundColor: toneAccentStyles.blue.color }}
+                      aria-hidden
+                    />
+                    <span>{item.title}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -44,82 +93,100 @@ export default function AboutPage() {
           title="A working split across systems, delivery, and product."
         />
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
-          {profileData.capabilities.map((group) => (
-            <div key={group.title} className="surface-panel-muted px-6 py-7">
-              <p className="meta-label">{group.title}</p>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-foreground md:text-base">
-                {group.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {profileData.capabilities.map((group, index) => {
+            const tone = capabilityTones[index % capabilityTones.length]
+            const accentStyle = toneAccentStyles[tone]
+
+            return (
+              <div key={group.title} className="surface-panel-muted relative overflow-hidden px-6 py-7">
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-80"
+                  style={{ background: toneGlowBackgrounds[tone] }}
+                />
+                <div className="relative">
+                  <p className="meta-label">{group.title}</p>
+                  <ul className="mt-4 space-y-3 text-sm leading-6 text-foreground md:text-base">
+                    {group.items.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <span
+                          className="mt-2 h-1.5 w-1.5 rounded-full"
+                          style={{ backgroundColor: accentStyle.color }}
+                          aria-hidden
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )
+          })}
         </div>
       </section>
 
       <section className="section-divider pt-10 md:pt-12">
         <SectionHeading eyebrow="Timeline" title="Recent roles and the kind of work they required." />
         <div className="mt-10 space-y-4">
-          {profileData.timeline.map((item) => (
-            <div key={item.title} className="surface-row px-6 py-6 md:px-8 md:py-7">
-              <div className="grid gap-4 lg:grid-cols-[14rem_minmax(0,1fr)]">
-                <div className="meta-label">{item.period}</div>
-                <div className="space-y-2">
-                  <h3 className="font-heading text-2xl text-foreground">{item.title}</h3>
-                  <p className="text-sm leading-7 text-muted md:text-base">{item.description}</p>
+          {profileData.timeline.map((item) => {
+            const tone: AccentTone = 'amber'
+            const accentStyle = toneAccentStyles.amber
+
+            return (
+              <div key={item.title} className="surface-row relative overflow-hidden px-6 py-6 md:px-8 md:py-7">
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-75"
+                  style={{ background: toneGlowBackgrounds[tone] }}
+                />
+                <div className="relative grid gap-4 lg:grid-cols-[12rem_minmax(0,1fr)]">
+                  <div className="flex items-start gap-3">
+                    <span
+                      className="mt-1 h-2 w-2 rounded-full"
+                      style={{ backgroundColor: accentStyle.color }}
+                      aria-hidden
+                    />
+                    <div className="meta-label">{item.period}</div>
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="font-heading text-2xl text-foreground">{item.title}</h3>
+                    <p className="max-w-3xl text-sm leading-7 text-muted md:text-base">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </section>
 
       <section className="section-divider pt-10 md:pt-12">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(18rem,1.1fr)]">
-          <div className="surface-panel px-6 py-7 md:px-8 md:py-9">
-            <p className="meta-label">Recognition</p>
-            <ul className="mt-5 space-y-4">
-              {recognition.map((item) => (
-                <li
-                  key={`${item.title}-${item.date}`}
-                  className="flex items-start justify-between gap-4 border-b border-white/8 pb-4 last:border-b-0 last:pb-0"
-                >
-                  <div>
-                    <div className="text-sm uppercase tracking-[0.22em] text-muted">{item.type}</div>
-                    <div className="mt-2 text-base leading-6 text-foreground">{item.title}</div>
+        <SectionHeading
+          eyebrow="Recognition"
+          title="Awards and certifications that support the work shown elsewhere."
+        />
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          {recognition.map((item, index) => {
+            const tone = recognitionTones[index % recognitionTones.length]
+            const accentStyle = toneAccentStyles[tone]
+
+            return (
+              <div key={`${item.title}-${item.date}`} className="surface-row relative overflow-hidden px-6 py-6 md:px-8">
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-75"
+                  style={{ background: toneGlowBackgrounds[tone] }}
+                />
+                <div className="relative flex items-start justify-between gap-5">
+                  <div className="space-y-2">
+                    <div className="meta-label" style={{ color: accentStyle.color }}>
+                      {item.type}
+                    </div>
+                    <div className="text-lg leading-7 text-foreground">{item.title}</div>
                   </div>
                   <div className="meta-label whitespace-nowrap">{item.date}</div>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="surface-panel px-6 py-7 md:px-8 md:py-9">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="meta-label">Résumé</p>
-                <h2 className="mt-3 font-heading text-3xl text-foreground">Download or preview the current PDF.</h2>
+                </div>
               </div>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="/resume.pdf"
-                  className="rounded-full border border-primary/35 bg-primary/12 px-5 py-3 text-[0.72rem] uppercase tracking-[0.24em] text-foreground transition hover:-translate-y-0.5 hover:bg-primary/18"
-                >
-                  Download PDF
-                </a>
-                <a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener"
-                  className="rounded-full border border-border bg-white/[0.03] px-5 py-3 text-[0.72rem] uppercase tracking-[0.24em] text-foreground transition hover:border-white/15 hover:bg-white/[0.06]"
-                >
-                  Open
-                </a>
-              </div>
-            </div>
-            <div className="mt-6">
-              <ResumeAccordion height="h-[70vh]" />
-            </div>
-          </div>
+            )
+          })}
         </div>
       </section>
     </div>

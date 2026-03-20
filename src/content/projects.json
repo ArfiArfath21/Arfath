@@ -1,5 +1,34 @@
 [
   {
+    "slug": "arx",
+    "title": "Arx",
+    "kicker": "Personal memory layer",
+    "headline": "A personal memory layer that captures what you encounter, threads the patterns, and gives it back when it matters.",
+    "result": "Built as a private-by-default memory system for people who consume a lot, remember too little, and want real recall in conversation.",
+    "role": "Founder / Product Design / AI Systems",
+    "year": "2026",
+    "stack": ["Voice, text, image", "Memory graph", "Context retrieval", "Private by default"],
+    "metrics": [
+      "Capture / thread / recall",
+      "Built for live conversational recall",
+      "Personal tool with product-grade framing"
+    ],
+    "impact": [
+      "Turns scattered inputs into connected memory",
+      "Designed for curious people, not note-taking power users",
+      "Newest personal product build"
+    ],
+    "primaryLink": {
+      "href": "https://arx.arfath.me/",
+      "label": "Visit Arx",
+      "external": true
+    },
+    "featured": true,
+    "homePriority": 0,
+    "status": "new",
+    "accentTone": "green"
+  },
+  {
     "slug": "insights-iq",
     "title": "Insights IQ",
     "kicker": "Enterprise GenAI analytics platform",
@@ -18,10 +47,10 @@
       "Improved reliability under production load",
       "Enabled secure enterprise adoption"
     ],
-    "links": { "caseStudy": "/work/insights-iq", "demo": "", "repo": "" },
     "cover": "/images/insights-iq-cover.png",
     "featured": true,
-    "accentTone": "blue"
+    "homePriority": 1,
+    "accentTone": "red"
   },
   {
     "slug": "aiba-genai-recommender",
@@ -42,10 +71,10 @@
       "Simplified discovery for end users",
       "Lifted quality without adding operational drag"
     ],
-    "links": { "caseStudy": "/work/aiba", "repo": "" },
     "cover": "/images/aiba-cover.png",
     "featured": true,
-    "accentTone": "indigo"
+    "homePriority": 2,
+    "accentTone": "blue"
   },
   {
     "slug": "slingshot-copilot",
@@ -62,9 +91,8 @@
       "Better consistency across teams"
     ],
     "impact": ["Faster iteration", "Higher quality", "Lower friction in daily DS workflows"],
-    "links": { "caseStudy": "/work/slingshot" },
     "cover": "/images/slingshot-cover.png",
-    "featured": true,
-    "accentTone": "silver"
+    "featured": false,
+    "accentTone": "amber"
   }
 ]

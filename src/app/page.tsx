@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import projects from '@/content/projects.json'
 import profile from '@/content/profile.json'
@@ -9,28 +8,28 @@ import { ProjectRow } from '@/components/project-row'
 import { ProofStrip } from '@/components/proof-strip'
 import { ElsewhereLinks } from '@/components/elsewhere-links'
 import { recognition } from '@/content/recognition'
+import { toneGlowBackgrounds } from '@/lib/accent'
 import type { Profile, Project } from '@/types/site'
 
 export default function HomePage() {
   const profileData = profile as Profile
-  const featured = (projects as Project[]).filter((project) => project.featured).slice(0, 3)
-  const proofItems = [
-    ...profileData.credibilityItems.slice(0, 3).map((item) => ({
-      label: item.label,
-      value: item.value,
-    })),
-    ...recognition.slice(0, 3).map((item) => ({
-      label: item.type,
-      value: item.title,
-      detail: item.date,
-    })),
-  ]
+  const allProjects = projects as Project[]
+  const featured = [...allProjects]
+    .filter((project) => project.featured)
+    .sort((left, right) => (left.homePriority ?? 999) - (right.homePriority ?? 999))
+    .slice(0, 3)
+  const proofItems = recognition.slice(0, 6).map((item) => ({
+    label: item.type,
+    value: item.title,
+    detail: item.date,
+  }))
 
   return (
     <div className="space-y-24 pb-8 md:space-y-32 md:pb-12">
       <FadeIn>
-        <section className="grid gap-8 pt-4 lg:grid-cols-[minmax(0,1.3fr)_minmax(18rem,0.7fr)] lg:items-end">
-          <div className="space-y-8">
+        <section className="hero-stage grid gap-10 pb-14 pt-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.65fr)] lg:items-start lg:pb-20">
+          <div className="hero-atmosphere" aria-hidden />
+          <div className="relative z-[1] space-y-8 lg:pr-6">
             <p className="eyebrow">{profileData.heroEyebrow}</p>
             <h1 className="max-w-5xl font-heading text-5xl leading-[0.96] text-foreground sm:text-6xl lg:text-7xl">
               {profileData.heroHeadline}
@@ -38,61 +37,60 @@ export default function HomePage() {
             <p className="max-w-2xl text-lg leading-8 text-muted md:text-xl">
               {profileData.heroIntro}
             </p>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/work" className={buttonVariants()}>
-                Selected Work
-              </Link>
-              <Link href="/resume" className={buttonVariants({ variant: 'outline' })}>
-                Résumé
-              </Link>
-            </div>
           </div>
-          <div className="surface-panel p-6 md:p-8">
-            <div className="space-y-6">
-              <div>
-                <p className="meta-label">Current focus</p>
-                <p className="mt-3 text-base leading-7 text-foreground">
-                  Building AI products where orchestration, evaluation, deployment, and adoption
-                  matter as much as the model itself.
+          <div className="hero-spotlight surface-panel relative z-[1] overflow-hidden p-6 md:p-8 lg:mt-10">
+            <div
+              className="pointer-events-none absolute inset-0 opacity-90"
+              style={{ background: toneGlowBackgrounds.green }}
+            />
+            <div className="relative space-y-6">
+              <div className="space-y-3">
+                <p className="meta-label text-primary/85">Currently</p>
+                <p className="text-base leading-7 text-foreground">
+                  Senior Associate in Data Science at Publicis Sapient, working across AI product
+                  strategy, ML systems, and production delivery.
                 </p>
               </div>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4">
-                  <div className="meta-label">Location</div>
+                <div className="rounded-[1.5rem] border border-white/10 bg-black/20 px-4 py-4 backdrop-blur-sm">
+                  <div className="meta-label">Base</div>
                   <div className="mt-2 text-sm leading-6 text-foreground">{profileData.location}</div>
                 </div>
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4">
-                  <div className="meta-label">Operating range</div>
+                <div className="rounded-[1.5rem] border border-white/10 bg-black/20 px-4 py-4 backdrop-blur-sm">
+                  <div className="meta-label">Working Across</div>
                   <div className="mt-2 text-sm leading-6 text-foreground">
-                    Product thinking, ML systems, platform delivery, and launch discipline.
+                    Agentic systems, recommendation engines, platform delivery, and operational
+                    reliability.
                   </div>
                 </div>
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4 sm:col-span-2 lg:col-span-1">
-                  <div className="meta-label">Most useful when</div>
+                <div className="rounded-[1.5rem] border border-white/10 bg-black/20 px-4 py-4 backdrop-blur-sm sm:col-span-2 lg:col-span-1">
+                  <div className="meta-label">Best Fit</div>
                   <div className="mt-2 text-sm leading-6 text-foreground">
-                    The work is ambiguous, cross-functional, and close to production.
+                    Ambiguous, cross-functional work where product shape and production discipline
+                    both matter.
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="grid gap-4 lg:col-span-2 lg:grid-cols-4">
-            {profileData.credibilityItems.map((item) => (
-              <div key={item.label} className="rounded-[1.6rem] border border-border bg-white/[0.03] px-5 py-5">
-                <div className="font-heading text-2xl text-foreground md:text-3xl">{item.value}</div>
-                <p className="mt-2 text-sm leading-6 text-muted">{item.label}</p>
-              </div>
-            ))}
+          <div className="absolute inset-x-0 bottom-0 z-[1] hidden justify-center lg:flex">
+            <Link
+              href="#selected-work"
+              className="inline-flex flex-col items-center gap-3 text-[0.62rem] uppercase tracking-[0.34em] text-muted transition hover:text-foreground"
+            >
+              <span>Scroll</span>
+              <span className="scroll-cue-shell" aria-hidden />
+            </Link>
           </div>
         </section>
       </FadeIn>
 
       <FadeIn delay={0.05}>
-        <section className="section-divider pt-10 md:pt-14">
+        <section id="selected-work" className="section-divider pt-10 md:pt-14">
           <SectionHeading
             eyebrow="Selected Work"
-            title="A small set of projects where reliability mattered as much as the model."
-            description="The strongest work tends to sit where architecture, product sense, and operational discipline all have to show up at the same time."
+            title="Newest and selected work where product shape and system reliability had to move together."
+            description="The strongest work here is the work that had to survive product pressure, delivery constraints, and operational reality at the same time."
           />
           <div className="mt-10 space-y-5">
             {featured.map((project) => (
@@ -148,54 +146,10 @@ export default function HomePage() {
         <section className="section-divider pt-10 md:pt-14">
           <SectionHeading
             eyebrow="Elsewhere"
-            title="Writing, utilities, and side builds that still earn a place in the archive."
+            title="Writing, utilities, and smaller builds that still earn a place here."
           />
           <div className="mt-10">
             <ElsewhereLinks links={profileData.secondaryLinks} />
-          </div>
-        </section>
-      </FadeIn>
-
-      <FadeIn delay={0.25}>
-        <section className="section-divider pt-10 md:pt-14">
-          <div className="surface-panel grid gap-8 px-6 py-8 md:grid-cols-[1.15fr_0.85fr] md:px-8 md:py-10">
-            <div className="space-y-4">
-              <p className="eyebrow">Contact</p>
-              <h2 className="max-w-3xl font-heading text-3xl leading-tight text-foreground md:text-5xl">
-                If the brief is messy, cross-functional, and close to production, that is usually
-                where I am most useful.
-              </h2>
-              <p className="max-w-2xl text-sm leading-7 text-muted md:text-base">
-                I am open to product, platform, and applied AI work where the bar is shipping
-                something dependable rather than presenting a polished prototype.
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 md:justify-end">
-              <a
-                href={`mailto:${profileData.email}`}
-                className="rounded-[1.5rem] border border-primary/35 bg-primary/12 px-5 py-4 text-sm uppercase tracking-[0.26em] text-foreground transition hover:-translate-y-0.5 hover:bg-primary/18"
-              >
-                {profileData.email}
-              </a>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href={profileData.social.linkedin}
-                  target="_blank"
-                  rel="noopener"
-                  className="rounded-full border border-border bg-white/[0.03] px-4 py-3 text-[0.72rem] uppercase tracking-[0.24em] text-foreground transition hover:border-white/15 hover:bg-white/[0.06]"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href={profileData.social.github}
-                  target="_blank"
-                  rel="noopener"
-                  className="rounded-full border border-border bg-white/[0.03] px-4 py-3 text-[0.72rem] uppercase tracking-[0.24em] text-foreground transition hover:border-white/15 hover:bg-white/[0.06]"
-                >
-                  GitHub
-                </a>
-              </div>
-            </div>
           </div>
         </section>
       </FadeIn>

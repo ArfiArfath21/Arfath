@@ -18,6 +18,8 @@ export type SecondaryLink = {
   href: string
   desc: string
   kind: string
+  tag?: string
+  accentTone?: AccentTone
 }
 
 export type CapabilityGroup = {
@@ -49,7 +51,13 @@ export type Profile = {
   timeline: TimelineItem[]
 }
 
-export type AccentTone = 'blue' | 'indigo' | 'silver'
+export type AccentTone = 'green' | 'red' | 'blue' | 'amber'
+
+export type PrimaryLink = {
+  href: string
+  label: string
+  external?: boolean
+}
 
 export type Project = {
   slug: string
@@ -62,12 +70,10 @@ export type Project = {
   stack: string[]
   metrics: string[]
   impact: string[]
-  links: {
-    caseStudy?: string
-    demo?: string
-    repo?: string
-  }
+  primaryLink?: PrimaryLink
   featured: boolean
+  homePriority?: number
+  status?: 'new'
   accentTone?: AccentTone
 }
 
