@@ -66,9 +66,11 @@ body::after {
 
 @media (prefers-reduced-motion: reduce) {
   [data-reveal-motion],
-  [data-scroll-parallax] {
+  [data-scroll-parallax],
+  [data-hero-intro] {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
     will-change: auto !important;
   }
 }

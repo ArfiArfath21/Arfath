@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from 'react'
-import { useScroll } from 'framer-motion'
+import { motion, useScroll } from 'framer-motion'
 import Link from 'next/link'
 import { FadeIn } from '@/components/motion/fade-in'
 import { ScrollParallax } from '@/components/motion/scroll-parallax'
@@ -33,6 +33,7 @@ export function HomeHero({ profile }: HomeHeroProps) {
     layoutEffect: false,
   })
   const infoItems = spotlightItems(profile.location)
+  const introEase: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
   return (
     <section
@@ -44,6 +45,10 @@ export function HomeHero({ profile }: HomeHeroProps) {
         y={[0, 64]}
         opacity={[0.98, 0.72]}
         className="hero-atmosphere"
+        data-hero-intro
+        initial={{ scale: 1.08, filter: 'blur(20px)' }}
+        animate={{ scale: 1, filter: 'blur(0px)' }}
+        transition={{ duration: 1.35, ease: introEase }}
         aria-hidden
       />
 
@@ -53,15 +58,37 @@ export function HomeHero({ profile }: HomeHeroProps) {
         opacity={[1, 0.82]}
         className="relative z-[1] lg:pr-6"
       >
-        <FadeIn y={22} scaleFrom={0.992} amount={0.45} margin="0px" className="space-y-8">
-          <p className="eyebrow">{profile.heroEyebrow}</p>
-          <h1 className="max-w-5xl font-heading text-5xl leading-[0.96] text-foreground sm:text-6xl lg:text-7xl">
-            {profile.heroHeadline}
-          </h1>
-          <p className="max-w-2xl text-lg leading-8 text-muted md:text-xl">
+        <div className="space-y-8">
+          <motion.p
+            className="eyebrow"
+            data-hero-intro
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.08, ease: introEase }}
+          >
+            {profile.heroEyebrow}
+          </motion.p>
+          <div className="overflow-hidden">
+            <motion.h1
+              className="max-w-5xl font-heading text-5xl leading-[0.96] text-foreground sm:text-6xl lg:text-7xl"
+              data-hero-intro
+              initial={{ opacity: 0, y: 56, filter: 'blur(14px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 1.05, delay: 0.12, ease: introEase }}
+            >
+              {profile.heroHeadline}
+            </motion.h1>
+          </div>
+          <motion.p
+            className="max-w-2xl text-lg leading-8 text-muted md:text-xl"
+            data-hero-intro
+            initial={{ opacity: 0, y: 28, filter: 'blur(8px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.82, delay: 0.24, ease: introEase }}
+          >
             {profile.heroIntro}
-          </p>
-        </FadeIn>
+          </motion.p>
+        </div>
       </ScrollParallax>
 
       <ScrollParallax
@@ -69,6 +96,10 @@ export function HomeHero({ profile }: HomeHeroProps) {
         y={[0, 28]}
         scale={[1, 0.985]}
         className="hero-spotlight surface-panel relative z-[1] overflow-hidden p-6 md:p-8 lg:mt-10"
+        data-hero-intro
+        initial={{ opacity: 0, rotateX: 8, filter: 'blur(10px)' }}
+        animate={{ opacity: 1, rotateX: 0, filter: 'blur(0px)' }}
+        transition={{ duration: 1.05, delay: 0.22, ease: introEase }}
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-90"
@@ -77,7 +108,7 @@ export function HomeHero({ profile }: HomeHeroProps) {
         <FadeIn
           y={20}
           scaleFrom={0.992}
-          delay={0.08}
+          delay={0.34}
           amount={0.45}
           margin="0px"
           className="relative space-y-6"
@@ -96,7 +127,7 @@ export function HomeHero({ profile }: HomeHeroProps) {
                 once={false}
                 y={14}
                 scaleFrom={0.99}
-                delay={0.12 + index * 0.04}
+                delay={0.38 + index * 0.05}
                 amount={0.35}
                 margin="-10% 0px -10% 0px"
               >
@@ -118,13 +149,20 @@ export function HomeHero({ profile }: HomeHeroProps) {
         opacity={[1, 0]}
         className="absolute inset-x-0 bottom-0 z-[1] hidden justify-center lg:flex"
       >
-        <Link
-          href="#selected-work"
-          className="inline-flex flex-col items-center gap-3 text-[0.62rem] uppercase tracking-[0.34em] text-muted transition hover:text-foreground"
+        <motion.div
+          data-hero-intro
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.46, ease: introEase }}
         >
-          <span>Scroll</span>
-          <span className="scroll-cue-shell" aria-hidden />
-        </Link>
+          <Link
+            href="#selected-work"
+            className="inline-flex flex-col items-center gap-3 text-[0.62rem] uppercase tracking-[0.34em] text-muted transition hover:text-foreground"
+          >
+            <span>Scroll</span>
+            <span className="scroll-cue-shell" aria-hidden />
+          </Link>
+        </motion.div>
       </ScrollParallax>
     </section>
   )
